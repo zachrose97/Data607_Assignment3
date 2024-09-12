@@ -1,0 +1,62 @@
+```{r}
+library(dplyr)
+
+data <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/majors-list.csv"
+majors <- read.csv(data, stringsAsFactors = FALSE)
+
+filtered_majors <- majors %>%
+  filter(grepl("DATA|STATISTICS", Major, ignore.case = TRUE))
+
+filtered_majors
+```
+
+```{r}
+fruits_vegetables <- c("bell pepper", "bilberry", "blackberry", "blood orange", "blueberry", "cantaloupe", "chili pepper", "cloudberry", "elderberry", "lime", "lychee", "mulberry", "olive", "salal berry")
+
+cat(paste0("c(", paste(shQuote(fruits_vegetables, type = "cmd"), collapse = ", "), ")"))
+```
+
+(.)\1\1
+This expression matches any character that is repeated three times.
+
+"(.)(.)\\2\\1"
+This expression matches if two characters are repeated backwards after the first two. A four letter or symbol palindrome. Example: xyyx
+
+(..)\1
+This expression matches if two characters are repeated identically.
+
+"(.).\\1.\\1"
+This expression matches the placement of the first character if it appears third and fifth in a string. 
+
+"(.)(.)(.).*\\3\\2\\1"
+This expression matches if three characters are found in reverse order at the end of a string. The characters and the number of characters inbetween do not matter if the last three are the same as the first three reversed. 
+
+```{r}
+words <- c("radar", "level", "hello", "world", "a", "racecar")
+pattern <- "^(.).*\\1$"
+matches <- grepl(pattern, words)
+words[matches]
+```
+
+```{r}
+words1 <- c("salsa", "mama", "world", "hello", "banana")
+pattern_w <- "(..).*\\1"
+matches1 <- grepl(pattern_w, words1)
+words1 [matches1]
+```
+
+```{r}
+words2 <- c("seventy", "ethereal", "surprises", "other", "masks")
+pattern2 <- "(.).*\\1.*\\1"
+matches2 <- grepl(pattern2, words2)
+words2 [matches2]
+```
+
+```{r}
+words3 <- c("abcdeffedcba", "000abc000abc", "000abc000", "dada")
+pattern3 <- "(.)(.)(.).*\\3\\2\\1"
+matches3 <- grepl(pattern3, words3)
+words3[matches3]
+```
+
+
